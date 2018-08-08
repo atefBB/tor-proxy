@@ -1,0 +1,14 @@
+{
+    "name": "atef/tor-proxy",
+    "description": "A simple TOR Proxy class",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Atef Ben Ali",
+            "email": "atef.bettaib@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "*"
+    }
+}
