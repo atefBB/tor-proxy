@@ -52,8 +52,6 @@ class TorProxy
                     "Error while sending request using TOR with message %s", $e->getMessage()
                 )
             );
-
-            return false;
         }
     }
 
@@ -78,8 +76,6 @@ class TorProxy
                 throw new Exception(
                     "Error while changing Tor proxy identity: {$error_number} : {$err_string}"
                 );
-
-                return false;
             } else {
                 fputs($fp, "AUTHENTICATE \"" . getenv('TOR_CONTROL_PASSWORD') . "\"\r\n");
 
@@ -90,7 +86,7 @@ class TorProxy
 
                 if ($code != '250') {
                     // signal failed
-                    return false;
+                   throw new Exception("Signaling failed");
                 }
             }
 
