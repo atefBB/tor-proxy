@@ -8,7 +8,7 @@ Install Apache, PHP, CURL & Tor with apt-get
 sudo apt-get install -y apache2 php5 php5-curl tor
 ```
 
-Tor creates a proxy on your mashine with port 9050 for SOCKS5 connections.
+Tor creates a proxy on your machine with port 9050 for SOCKS5 connections.
 
 Use the Proxy class for a GET request.
 
