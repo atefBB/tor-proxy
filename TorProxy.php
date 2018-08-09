@@ -8,6 +8,7 @@
  */
 class TorProxy
 {
+    /** cURL session */
     private $ch;
 
     public function __construct()
@@ -25,7 +26,7 @@ class TorProxy
     }
 
     /**
-     * Send request using cUrl.
+     * Send request.
      *
      * @param  string $url
      * @param  array|null $postParameter
@@ -58,7 +59,7 @@ class TorProxy
     /**
      * Change proxy identity.
      *
-     * @return mixed
+     * @return boolean
      */
     public function changeIdentity()
     {
@@ -86,13 +87,13 @@ class TorProxy
 
                 if ($code != '250') {
                     // signal failed
-                   throw new Exception("Signaling failed");
+                    throw new Exception("Signaling failed");
                 }
             }
 
             fclose($fp);
 
-            return $received;
+            return true;
         } catch (Exception $e) {
             throw new Exception(
                 sprintf("Error while changing Tor proxy identity: %s", $e->getMessage())
