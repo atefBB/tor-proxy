@@ -2,6 +2,7 @@
     "name": "atef/tor-proxy",
     "description": "A simple TOR Proxy class",
     "type": "library",
+    "homepage": "https://github.com/atefBB/tor-proxy",
     "authors": [
         {
             "name": "Atef Ben Ali",
