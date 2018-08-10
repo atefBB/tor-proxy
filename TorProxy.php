@@ -35,11 +35,7 @@ class TorProxy
     public function sendRequest($url, $postParameter = null)
     {
         if (sizeof($postParameter) > 0) {
-            curl_setopt(
-                $this->ch,
-                CURLOPT_POSTFIELDS,
-                $postParameter
-            );
+            curl_setopt($this->ch, CURLOPT_POSTFIELDS, $postParameter);
         }
 
         curl_setopt($this->ch, CURLOPT_URL, $url);
@@ -50,7 +46,8 @@ class TorProxy
         } catch (Exception $e) {
             throw new Exception(
                 sprintf(
-                    "Error while sending request using TOR with message %s", $e->getMessage()
+                    "Error while sending request using TOR with message %s",
+                    $e->getMessage()
                 )
             );
         }
@@ -64,25 +61,26 @@ class TorProxy
     public function changeIdentity()
     {
         try {
-            $ip   = '127.0.0.1';
+            $ip = '127.0.0.1';
             $port = '9051';
 
-            $fp = fsockopen(
-                $ip, $port,
-                $error_number,
-                $err_string, 30
-            );
+            $fp = fsockopen($ip, $port, $error_number, $err_string, 30);
 
             if (!$fp) {
                 throw new Exception(
                     "Error while changing Tor proxy identity: {$error_number} : {$err_string}"
                 );
             } else {
-                fputs($fp, "AUTHENTICATE \"" . getenv('TOR_CONTROL_PASSWORD') . "\"\r\n");
+                fputs(
+                    $fp,
+                    "AUTHENTICATE \"" .
+                        getenv('TOR_CONTROL_PASSWORD') .
+                        "\"\r\n"
+                );
 
                 // send the request to for new identity
                 fputs($fp, "signal NEWNYM\r\n");
-                $received          = fread($fp, 1024);
+                $received = fread($fp, 1024);
                 list($code, $text) = explode(' ', $received, 2);
 
                 if ($code != '250') {
@@ -96,7 +94,10 @@ class TorProxy
             return true;
         } catch (Exception $e) {
             throw new Exception(
-                sprintf("Error while changing Tor proxy identity: %s", $e->getMessage())
+                sprintf(
+                    "Error while changing Tor proxy identity: %s",
+                    $e->getMessage()
+                )
             );
         }
     }
