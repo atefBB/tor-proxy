@@ -22,9 +22,9 @@ Use the Proxy class for a POST request:
 
 ```php
 $proxy = new TorProxy();
-$parameter = array(
+$parameters = array(
 	'parameter1' => 'value1',
 	'parameter2' => 'value2'
 );
-echo $proxy->curl( "http://check.torproject.org", $parameter );
+echo $proxy->curl("http://check.torproject.org", $parameters);
 ```
